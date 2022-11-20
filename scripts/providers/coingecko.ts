@@ -95,7 +95,7 @@ export class CoinGecko implements Provider {
 
   private async getMarketsCoins(chainId: ChainId) {
     const result: CoinInfo[] = []
-    while (result.length < 100) {
+    while (result.length < 1000) {
       const requestURL = urlcat(baseURL, '/coins/markets', {
         vs_currency: 'usd',
         order: 'market_cap_desc',
@@ -159,6 +159,7 @@ export class CoinGecko implements Provider {
       if (!platformId) continue
 
       const detail = await this.getCoinDetail(token.id, platformId)
+      console.log('Fetching: ', token.symbol)
       if (!detail) continue
       if (detail.contract_address === '') continue
 

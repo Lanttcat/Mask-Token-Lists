@@ -77,7 +77,7 @@ export const cacheDir = path.join(process.env.PWD, 'scripts/cache/origin')
 export async function writeTokensToFile(chain: ChainId, tokens: FungibleToken[]) {
   const chains = convertEnumToArray(ChainId)
   const filename = chains.find((x) => x.value === chain)?.key
-  await fs.writeFile(path.join(outputDir, `${filename?.toLowerCase()}.json`), stringify(tokens), {
+  await fs.writeFile(path.join(outputDir, `${filename?.toLowerCase()}.json`), JSON.stringify(tokens), {
     encoding: 'utf-8',
   })
 }

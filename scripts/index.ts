@@ -17,7 +17,7 @@ const cryptoRankAPI = new CryptoRank()
 const coinMarketCapAPI = new CoinMarketCap()
 const subScanAPI = new SubScan()
 
-const providers = [coinGeckoAPI, explorerAPI, cryptoRankAPI, coinMarketCapAPI, subScanAPI]
+const providers = [coinGeckoAPI]
 
 const TOKEN_LIST_BASE_URL = 'https://tokens.r2d2.to/'
 
@@ -31,7 +31,7 @@ async function getLatestReleaseTokenList(chainId: ChainId) {
 async function main() {
   const chains = Object.values(ChainId).filter((v) => !isNaN(Number(v))) as ChainId[]
 
-  for (const chain of chains) {
+  for (const chain of [ChainId.Mainnet]) {
     if (chain !== ChainId.Mainnet) continue
     console.log(new Array(process.stdout.rows).fill('*').join(''))
     console.log(`The current chain id is: ${chain}`)
